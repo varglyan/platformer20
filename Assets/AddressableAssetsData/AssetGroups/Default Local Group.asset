@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: a70cea48821a2914d8a01762fc280b58
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 3634dd147c8ab9c4fb4bc7e49345830c
+    m_Address: Assets/Art/ufo.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 550a720821835744f8e7e26c0fce9baf, type: 2}
   m_SchemaSet:
