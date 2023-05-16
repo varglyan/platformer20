@@ -74,26 +74,26 @@ namespace Ampersand.Editor
             Build(buildTarget, options["customBuildPath"]);
         }
 
-        // private static void BuildAddressables(string addressablesProfileName)
-        // {
-        //     Console.WriteLine("Cleaning player content.");
-        //     AddressableAssetSettings.CleanPlayerContent();
+        private static void BuildAddressables(string addressablesProfileName)
+        {
+            Console.WriteLine("Cleaning player content.");
+            AddressableAssetSettings.CleanPlayerContent();
 
-        //     AddressableAssetProfileSettings profileSettings =
-        //         AddressableAssetSettingsDefaultObject.Settings.profileSettings;
-        //     Console.WriteLine("Using active databuilder: " +
-        //                       AddressableAssetSettingsDefaultObject.Settings.ActivePlayerDataBuilder.Name);
+            AddressableAssetProfileSettings profileSettings =
+                AddressableAssetSettingsDefaultObject.Settings.profileSettings;
+            Console.WriteLine("Using active databuilder: " +
+                              AddressableAssetSettingsDefaultObject.Settings.ActivePlayerDataBuilder.Name);
 
-        //     Console.WriteLine("Setting profile to: " + addressablesProfileName);
-        //     string profileId = profileSettings.GetProfileId(addressablesProfileName);
-        //     AddressableAssetSettingsDefaultObject.Settings.activeProfileId = profileId;
+            Console.WriteLine("Setting profile to: " + addressablesProfileName);
+            string profileId = profileSettings.GetProfileId(addressablesProfileName);
+            AddressableAssetSettingsDefaultObject.Settings.activeProfileId = profileId;
 
-        //     Console.WriteLine("Starting addressables content build.");
-        //     // Build addressable content
-        //     AddressableAssetSettings.BuildPlayerContent();
+            Console.WriteLine("Starting addressables content build.");
+            // Build addressable content
+            AddressableAssetSettings.BuildPlayerContent();
 
-        //     Console.WriteLine("Building player content finished.");
-        // }
+            Console.WriteLine("Building player content finished.");
+        }
 
         private static Dictionary<string, string> GetValidatedOptions()
         {
