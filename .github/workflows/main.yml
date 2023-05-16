@@ -30,7 +30,13 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          targetPlatform: ${{ matrix.targetPlatform }}
+          unityVersion: 2020.3.47f1
+          targetPlatform: Android
+          buildMethod: ContinuousIntegration.BuildWin # Addressable content build is triggered by the build method
+          versioning: Semantic
+      #   customParameters: -devBuild ${{ github.event.inputs.build_type }} -branch ${{ steps.extract_branch.outputs.branch }}
+      #   with:
+      #     targetPlatform: ${{ matrix.targetPlatform }}
       - uses: actions/upload-artifact@v2
         with:
           name: Build-${{ matrix.targetPlatform }}
