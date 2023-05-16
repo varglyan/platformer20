@@ -40,7 +40,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Build-Android
-          path: build/Android
+          path: build/Android/Android.apk
   # deployPages:
   #   needs: buildForAllSupportedPlatforms
   #   name: Deploy to Github Pages 🚀
