@@ -68,7 +68,7 @@ namespace Ampersand.Editor
             }
 
             // Build addressables content
-           // BuildAddressables($"{options["buildTarget"]}-{options["branch"]}");
+            BuildAddressables($"{options["buildTarget"]}-{options["branch"]}");
 
             // Custom build
             Build(buildTarget, options["customBuildPath"]);
