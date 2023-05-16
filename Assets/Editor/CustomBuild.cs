@@ -8,7 +8,7 @@ public class ContinuousIntegration
 /// </summary>
 public static void BuildWin()
 {
-Build(BuildTarget.StandaloneWindows64, "Build/Platformer20.exe");
+Build(BuildTarget.Android, "Build/Platformer20.apk");
 }
 
 /// <summary>
