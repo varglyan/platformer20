@@ -7,25 +7,25 @@ permissions:
 
 jobs:
   buildForAllSupportedPlatforms:
-    name: Build for ${{ matrix.targetPlatform }}
+    name: Build for Android
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        targetPlatform:
-#          - StandaloneWindows64 # Build a Windows 64-bit standalone.
-#          - WebGL # WebGL.
-          - Android # Build an Android .apk standalone app.
+#     strategy:
+#       fail-fast: false
+#       matrix:
+#         targetPlatform:
+# #          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+# #          - WebGL # WebGL.
+#           - Android # Build an Android .apk standalone app.
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
           lfs: true
-      - uses: actions/cache@v2
-        with:
-          path: Library
-          key: Library-${{ matrix.targetPlatform }}
-          restore-keys: Library-
+      # - uses: actions/cache@v2
+      #   with:
+      #     path: Library
+      #     key: Library-${{ matrix.targetPlatform }}
+      #     restore-keys: Library-
       - uses: game-ci/unity-builder@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -39,8 +39,8 @@ jobs:
       #     targetPlatform: ${{ matrix.targetPlatform }}
       - uses: actions/upload-artifact@v2
         with:
-          name: Build-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}
+          name: Build-Android
+          path: build/Android
   # deployPages:
   #   needs: buildForAllSupportedPlatforms
   #   name: Deploy to Github Pages 🚀
