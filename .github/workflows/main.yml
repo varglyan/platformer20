@@ -34,7 +34,7 @@ jobs:
         #   targetPlatform: Android
         #   buildMethod: ContinuousIntegration.BuildWin # Addressable content build is triggered by the build method
         #   versioning: Semantic
-        customParameters: -devBuild ${{ github.event.inputs.build_type }} -branch ${{ steps.extract_branch.outputs.branch }}
+        #customParameters: -devBuild ${{ github.event.inputs.build_type }} -branch ${{ steps.extract_branch.outputs.branch }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
       - uses: actions/upload-artifact@v2
