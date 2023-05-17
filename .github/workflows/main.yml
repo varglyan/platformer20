@@ -1,4 +1,4 @@
-name: Build project
+name: Build Windows project
 
 on:
    workflow_dispatch:
@@ -7,40 +7,40 @@ permissions:
 
 jobs:
   buildForAllSupportedPlatforms:
-    name: Build for Android
+    name: Build for Windows
     runs-on: ubuntu-latest
-#     strategy:
-#       fail-fast: false
-#       matrix:
-#         targetPlatform:
-# #          - StandaloneWindows64 # Build a Windows 64-bit standalone.
-# #          - WebGL # WebGL.
-#           - Android # Build an Android .apk standalone app.
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+#          - WebGL # WebGL.
+#          - Android # Build an Android .apk standalone app.
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
           lfs: true
-      # - uses: actions/cache@v2
-      #   with:
-      #     path: Library
-      #     key: Library-${{ matrix.targetPlatform }}
-      #     restore-keys: Library-
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
       - uses: game-ci/unity-builder@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        # with:
+        #   unityVersion: 2020.3.47f1
+        #   targetPlatform: Android
+        #   buildMethod: ContinuousIntegration.BuildWin # Addressable content build is triggered by the build method
+        #   versioning: Semantic
+        customParameters: -devBuild ${{ github.event.inputs.build_type }} -branch ${{ steps.extract_branch.outputs.branch }}
         with:
-          unityVersion: 2020.3.47f1
-          targetPlatform: Android
-          buildMethod: ContinuousIntegration.BuildWin # Addressable content build is triggered by the build method
-          versioning: Semantic
-      #   customParameters: -devBuild ${{ github.event.inputs.build_type }} -branch ${{ steps.extract_branch.outputs.branch }}
-      #   with:
-      #     targetPlatform: ${{ matrix.targetPlatform }}
+          targetPlatform: ${{ matrix.targetPlatform }}
       - uses: actions/upload-artifact@v2
         with:
-          name: Build-Android
-          path: build/Android/Android.apk
+          name: Build-Win
+          path: build/Win
   # deployPages:
   #   needs: buildForAllSupportedPlatforms
   #   name: Deploy to Github Pages 🚀
