@@ -29,18 +29,12 @@ jobs:
       - uses: game-ci/unity-builder@v2
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        # with:
-        #   unityVersion: 2020.3.47f1
-        #   targetPlatform: Android
-        #   buildMethod: ContinuousIntegration.BuildWin # Addressable content build is triggered by the build method
-        #   versioning: Semantic
-        #customParameters: -devBuild ${{ github.event.inputs.build_type }} -branch ${{ steps.extract_branch.outputs.branch }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
       - uses: actions/upload-artifact@v2
         with:
-          name: Build-Win
-          path: build/Win
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
   # deployPages:
   #   needs: buildForAllSupportedPlatforms
   #   name: Deploy to Github Pages 🚀
