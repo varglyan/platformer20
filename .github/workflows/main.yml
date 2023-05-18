@@ -25,13 +25,9 @@ jobs:
           username: "GitHub Bot"
           message: |
             WinBuild started by 👤 ${{ github.actor }}
-            From `${{ GITHUB_HEAD_REF }}` to `${{ github.base_ref }}`
+            From `${{ github.head_ref }}` to `${{ github.base_ref }}`
             Event `${{ github.event_name }}`
             PR ${{ github.event.number }}
-            ${{ GITHUB_REF_NAME }}
-            ${{ GITHUB_WORKFLOW }}
-            ${{ GITHUB_RUN_ID }}
-
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
