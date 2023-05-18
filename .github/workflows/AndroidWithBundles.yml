@@ -40,14 +40,14 @@ jobs:
           path: Library
           key: Library-Android
           restore-keys: Library-
-      - name: Free Disk Space
-        run: |
-          df -h
-          sudo swapoff -a
-          sudo rm -rf /swapfile /usr/share/dotnet /usr/local/share/boost $AGENT_TOOLSDIRECTORY /usr/local/lib/android /opt/ghc
-          sudo apt clean
-          docker rmi $(docker image ls -aq)
-          df -h
+      # - name: Free Disk Space
+      #   run: |
+      #     df -h
+      #     sudo swapoff -a
+      #     sudo rm -rf /swapfile /usr/share/dotnet /usr/local/share/boost $AGENT_TOOLSDIRECTORY /usr/local/lib/android /opt/ghc
+      #     sudo apt clean
+      #     docker rmi $(docker image ls -aq)
+      #     df -h
       - name: Extract branch name
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
