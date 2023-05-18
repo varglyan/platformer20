@@ -46,22 +46,22 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
-  FinishBuildDiscordNotification:
-    name: Finish Build Discord
-    runs-on: ubuntu-latest
-    needs: buildForAllSupportedPlatforms
-      steps:
-        - uses: appleboy/discord-action@master
-          with:
-            webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
-            webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
-            color: "#8b9b9c"
-            username: "GitHub DarkLord CI"
-            message: |
-              WinBuild started by 👤 ${{ github.actor }} is finished
-    #         From `${{ github.head_ref }}` to `${{ github.base_ref }}`
-              Event `${{ github.event_name }}`
-    #         PR ${{ github.event.number }} 
+  # FinishBuildDiscordNotification:
+  #   name: Finish Build Discord
+  #   runs-on: ubuntu-latest
+  #   needs: buildForAllSupportedPlatforms
+  #     steps:
+  #       - uses: appleboy/discord-action@master
+  #         with:
+  #           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+  #           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+  #           color: "#8b9b9c"
+  #           username: "GitHub DarkLord CI"
+  #           message: |
+  #             WinBuild started by 👤 ${{ github.actor }} is finished
+  #   #         From `${{ github.head_ref }}` to `${{ github.base_ref }}`
+  #             Event `${{ github.event_name }}`
+  #   #         PR ${{ github.event.number }} 
   # deployPages:
   #   needs: buildForAllSupportedPlatforms
   #   name: Deploy to Github Pages 🚀
