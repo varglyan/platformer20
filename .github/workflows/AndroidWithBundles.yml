@@ -18,6 +18,10 @@ jobs:
     env:
       ADDRESSABLES_CONTENT_BUILD_PATH: ${{ format('{0}/ServerData/Android', github.workspace) }}
     steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
       # start notification
       - name: Start notification
         uses: appleboy/discord-action@master
@@ -28,7 +32,9 @@ jobs:
           username: "DarkLord CI Bot"
           message: |
             Android Build started by 👤 ${{ github.actor }}
-            Event `${{ github.event_name }}`
+            Event `${{ github.event_name }}` 
+            Branch ${{ steps.extract_branch.outputs.branch }}
+            Commit ${{ github.sha }}
       # Checkout          
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -48,10 +54,6 @@ jobs:
       #     sudo apt clean
       #     docker rmi $(docker image ls -aq)
       #     df -h
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
       - name: Build Unity Project
         uses: game-ci/unity-builder@v2
         with:
@@ -84,4 +86,5 @@ jobs:
             Android Build finished by 👤 ${{ github.actor }}
             Event `${{ github.event_name }}` 
             Branch ${{ steps.extract_branch.outputs.branch }}
+            Commit ${{ github.sha }}
 
