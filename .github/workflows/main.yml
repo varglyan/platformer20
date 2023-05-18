@@ -27,7 +27,7 @@ jobs:
             WinBuild started by 👤 ${{ github.actor }}
             From `${{ github.head_ref }}` to `${{ github.base_ref }}`
             Event `${{ github.event_name }}`
-            PR ${{ github.event.number }}: ${{ github.event.pull_request.url }}
+            PR ${{ github.event.number }}
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
