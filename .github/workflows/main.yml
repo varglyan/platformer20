@@ -22,12 +22,11 @@ jobs:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           color: "#8b9b9c"
-          username: "GitHub Bot"
+          username: "DarkLord CI Bot"
           message: |
             WinBuild started by 👤 ${{ github.actor }}
-            From `${{ github.head_ref }}` to `${{ github.base_ref }}`
             Event `${{ github.event_name }}`
-            PR ${{ github.event.number }}: ${{ github.event.pull_request.url }}
+#            PR ${{ github.event.number }}: ${{ github.event.pull_request.url }}
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -46,6 +45,15 @@ jobs:
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
+      - uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          color: "#8b9b9c"
+          username: "DarkLord CI Bot"
+          message: |
+            WinBuild started by 👤 ${{ github.actor }} is finished
+            Event `${{ github.event_name }}`
   # deployPages:
   #   needs: buildForAllSupportedPlatforms
   #   name: Deploy to Github Pages 🚀
