@@ -19,6 +19,17 @@ jobs:
       ADDRESSABLES_CONTENT_BUILD_PATH: ${{ format('{0}/ServerData/Android', github.workspace) }}
     steps:
       # Checkout
+      - name: Start notification
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          color: "#8b9b9c"
+          username: "DarkLord CI Bot"
+          message: |
+            WinBuild started by 👤 ${{ github.actor }}
+            Event `${{ github.event_name }}`
+#            PR ${{ github.event.number }}: ${{ github.event.pull_request.url }}
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
