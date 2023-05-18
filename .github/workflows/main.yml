@@ -17,6 +17,10 @@ jobs:
 #          - WebGL # WebGL.
 #          - Android # Build an Android .apk standalone app.
     steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
       - uses: appleboy/discord-action@master
         with:
           webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
@@ -25,8 +29,10 @@ jobs:
           username: "DarkLord CI Bot"
           message: |
             Windows Build started by 👤 ${{ github.actor }}
-            Event `${{ github.event_name }}` Commit ${{ github.sha }}
-#            PR ${{ github.event.number }}: ${{ github.event.pull_request.url }}
+            Event `${{ github.event_name }}` 
+            Branch ${{ steps.extract_branch.outputs.branch }}
+            Commit ${{ github.sha }}
+
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -53,7 +59,9 @@ jobs:
           username: "DarkLord CI Bot"
           message: |
             Windows Build finished by 👤 ${{ github.actor }}
-            Event `${{ github.event_name }}` Commit ${{ github.sha }}
+            Event `${{ github.event_name }}` 
+            Branch ${{ steps.extract_branch.outputs.branch }}
+            Commit ${{ github.sha }}
   # deployPages:
   #   needs: buildForAllSupportedPlatforms
   #   name: Deploy to Github Pages 🚀
