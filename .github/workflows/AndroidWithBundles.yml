@@ -82,5 +82,6 @@ jobs:
           username: "DarkLord CI Bot"
           message: |
             Android Build finished by 👤 ${{ github.actor }}
-            Event `${{ github.event_name }}`
+            Event `${{ github.event_name }}` 
+            Branch ${{ steps.extract_branch.outputs.branch }}
 
