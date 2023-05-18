@@ -27,7 +27,7 @@ jobs:
           color: "#8b9b9c"
           username: "DarkLord CI Bot"
           message: |
-            WinBuild started by 👤 ${{ github.actor }}
+            Android Build started by 👤 ${{ github.actor }}
             Event `${{ github.event_name }}`
 #            PR ${{ github.event.number }}: ${{ github.event.pull_request.url }}
       - name: Checkout Repository
